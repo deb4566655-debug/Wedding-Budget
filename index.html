@@ -57,12 +57,45 @@
     padding: 30px 28px;
   }
 
-  /* Lock icon styled */
-  .icon {
-    text-align: center;
-    font-size: 42px;
+  /* Top icon & close container */
+  .icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 18px;
+  }
+
+  /* Close "×" button */
+  .close-btn {
+    background: transparent;
+    border: none;
     color: #217346; /* Excel green */
-    margin-bottom: 10px;
+    font-weight: 700;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    user-select: none;
+  }
+
+  .close-btn:hover {
+    color: #195832;
+  }
+
+  /* Green file icon box */
+  .file-icon-box {
+    background: #217346;
+    border-radius: 6px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 22px;
+    user-select: none;
+    box-shadow: 0 0 4px rgb(33 115 70 / 0.6);
   }
 
   /* Title */
@@ -156,7 +189,22 @@
 
   <div class="modal">
     <div class="card">
-      <div class="icon">🔒</div>
+
+      <div class="icon-container" role="banner">
+        <button
+          class="close-btn"
+          aria-label="Close"
+          title="Close"
+          onclick="window.close()"
+          type="button"
+        >
+          ×
+        </button>
+
+        <div class="file-icon-box" aria-hidden="true" title="Secure File">
+          📄
+        </div>
+      </div>
 
       <h2>Secure Document Access</h2>
 
