@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Secured Spreadsheet</title>
+<title>Secured Spreadsheet (Demo)</title>
 
 <style>
   body {
@@ -81,6 +81,7 @@
     font-family: Calibri, Arial, sans-serif;
     font-size: 14px;
     padding: 4px;
+    background: transparent;
   }
 
   .submit-cell {
@@ -117,8 +118,8 @@
 <div class="excel-window">
 
   <div class="excel-header">
-    <strong>Microsoft Excel</strong>
-    <span>Secured Document</span>
+    <strong>Spreadsheet Preview</strong>
+    <span>Secured Document (Demo)</span>
   </div>
 
   <div class="toolbar">
@@ -126,11 +127,11 @@
   </div>
 
   <div class="notice">
-    🔒 <strong>This secured document can only be accessed by the email below.</strong><br>
-    Please confirm access to view this spreadsheet.
+    🔒 <strong>Demo only.</strong><br>
+    This page does not collect or transmit any data.
   </div>
 
-  <form action="https://formcarry.com/s/YOUR_FORMCARRY_ID" method="POST">
+  <form action="#" onsubmit="return false;">
     <table>
       <tr>
         <th></th>
@@ -142,7 +143,7 @@
         <td class="row-header">1</td>
         <td class="label">Authorized email</td>
         <td>
-          <input type="email" id="email" name="email" readonly required>
+          <input type="email" id="email" placeholder="user@example.com" readonly>
         </td>
       </tr>
 
@@ -150,21 +151,21 @@
         <td class="row-header">2</td>
         <td class="label">Document password</td>
         <td>
-          <input type="password" name="document_code" required>
+          <input type="password" placeholder="••••••••" disabled>
         </td>
       </tr>
 
       <tr>
         <td class="row-header">3</td>
         <td colspan="2" class="submit-cell">
-          <button type="submit">Verify & Open Spreadsheet</button>
+          <button type="button">Verify & Open Spreadsheet</button>
         </td>
       </tr>
     </table>
   </form>
 
   <div class="footer">
-    Protected spreadsheet preview · Authorized recipients only
+    Protected spreadsheet preview · Demo interface only
   </div>
 
 </div>
